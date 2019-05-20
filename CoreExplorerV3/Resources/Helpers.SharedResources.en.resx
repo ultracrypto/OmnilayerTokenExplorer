@@ -1,0 +1,1215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="An error occurred while processing your request." xml:space="preserve">
+    <value>An error occurred while processing your request.</value>
+  </data>
+  <data name="Api" xml:space="preserve">
+    <value>Api</value>
+  </data>
+  <data name="Block explorer will be discontinued soon." xml:space="preserve">
+    <value>Block explorer will be discontinued soon.</value>
+  </data>
+  <data name="Coin distribution" xml:space="preserve">
+    <value>Coin distribution</value>
+  </data>
+  <data name="Connections" xml:space="preserve">
+    <value>Connections</value>
+  </data>
+  <data name="CryptoCore" xml:space="preserve">
+    <value>CryptoCore</value>
+  </data>
+  <data name="CryptoCore Explorer" xml:space="preserve">
+    <value>CryptoCore Explorer</value>
+  </data>
+  <data name="Current feature is disabled for {0}" xml:space="preserve">
+    <value>Current feature is disabled for {0}</value>
+  </data>
+  <data name="Due inactive community of {0} block explorer is closed." xml:space="preserve">
+    <value>Due inactive community of {0} block explorer is closed.</value>
+  </data>
+  <data name="Due inactive community of {0} I decide to close {1} block explorer." xml:space="preserve">
+    <value>Due inactive community of {0} I decide to close {1} block explorer.</value>
+  </data>
+  <data name="End of service" xml:space="preserve">
+    <value>End of service</value>
+  </data>
+  <data name="Error." xml:space="preserve">
+    <value>Error.</value>
+  </data>
+  <data name="Exchanges" xml:space="preserve">
+    <value>Exchanges</value>
+  </data>
+  <data name="Find me at discord" xml:space="preserve">
+    <value>Find me at discord</value>
+  </data>
+  <data name="Go!" xml:space="preserve">
+    <value>Go!</value>
+  </data>
+  <data name="Goal" xml:space="preserve">
+    <value>Goal</value>
+  </data>
+  <data name="Good bye!" xml:space="preserve">
+    <value>Good bye!</value>
+  </data>
+  <data name="If you appreciate my work, please consider supporting me {0} to address" xml:space="preserve">
+    <value>If you appreciate my work, please consider supporting me {0} to address</value>
+  </data>
+  <data name="If you like my job and want continue use this block explorer - please donate &lt;strong&gt;{0}&lt;/strong&gt; to address:" xml:space="preserve">
+    <value>If you like my job and want continue use this block explorer - please donate &lt;strong&gt;{0}&lt;/strong&gt; to address:</value>
+  </data>
+  <data name="Masternodes" xml:space="preserve">
+    <value>Masternodes</value>
+  </data>
+  <data name="Mining pools" xml:space="preserve">
+    <value>Mining pools</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>Now</value>
+  </data>
+  <data name="Official  explorer is &lt;a href='{0}'&gt;{1}&lt;/a&gt;" xml:space="preserve">
+    <value>Official  explorer is &lt;a href='{0}'&gt;{1}&lt;/a&gt;</value>
+  </data>
+  <data name="or email" xml:space="preserve">
+    <value>or email</value>
+  </data>
+  <data name="Please use official explorer." xml:space="preserve">
+    <value>This is myown custom development</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="Remember! Support developers of cryptocurrency services will lead to new features &amp; popularity of cryptocurrency." xml:space="preserve">
+    <value>Remember! Support developers of cryptocurrency services will lead to new features &amp; popularity of cryptocurrency.</value>
+  </data>
+  <data name="Support developers of cryptocurrency services will lead to new features &amp; popularity of cryptocurrency." xml:space="preserve">
+    <value>Support developers of cryptocurrency services will lead to new features &amp; popularity of cryptocurrency.</value>
+  </data>
+  <data name="Support information" xml:space="preserve">
+    <value>Support information</value>
+  </data>
+  <data name="This block explorer is not official {0} explorer." xml:space="preserve">
+    <value>This block explorer is not official {0} explorer.</value>
+  </data>
+  <data name="Toggle navigation" xml:space="preserve">
+    <value>Toggle navigation</value>
+  </data>
+  <data name="Want to connect block explorer to another coin?" xml:space="preserve">
+    <value>Want to connect block explorer to another coin?</value>
+  </data>
+  <data name="Warning!" xml:space="preserve">
+    <value>Warning!</value>
+  </data>
+  <data name="You may search a block height, block hash, tx hash or address." xml:space="preserve">
+    <value>You may search a block height, block hash, tx hash or address.</value>
+  </data>
+  <data name="% of current supply" xml:space="preserve">
+    <value>% of current supply</value>
+  </data>
+  <data name="% of total suply" xml:space="preserve">
+    <value>% of total suply</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Amount is approximately. Last {0} blocks is not included" xml:space="preserve">
+    <value>Amount is approximately. Last {0} blocks is not included</value>
+  </data>
+  <data name="Amount of total confirmed transactions in blockchain" xml:space="preserve">
+    <value>Amount of total confirmed transactions in blockchain</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="Blocks" xml:space="preserve">
+    <value>Blocks</value>
+  </data>
+  <data name="Current coin supply" xml:space="preserve">
+    <value>Current coin supply</value>
+  </data>
+  <data name="Developers usually premine coins in first blocks" xml:space="preserve">
+    <value>Developers usually premine coins in first blocks</value>
+  </data>
+  <data name="Early {0} mining distribution" xml:space="preserve">
+    <value>Early {0} mining distribution</value>
+  </data>
+  <data name="Information is precise within last 1h. Current coin supply for specific address is available inside address page." xml:space="preserve">
+    <value>Information is precise within last 1h. Current coin supply for specific address is available inside address page.</value>
+  </data>
+  <data name="Max coin supply" xml:space="preserve">
+    <value>Max coin supply</value>
+  </data>
+  <data name="Mined" xml:space="preserve">
+    <value>Mined</value>
+  </data>
+  <data name="Percent of mined coins" xml:space="preserve">
+    <value>Mined coins (%)</value>
+  </data>
+  <data name="Recieved" xml:space="preserve">
+    <value>Recieved</value>
+  </data>
+  <data name="Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="Taken from public sources" xml:space="preserve">
+    <value>Taken from public sources</value>
+  </data>
+  <data name="This information helps you to understand premined amount of coins within first 1000 blocks" xml:space="preserve">
+    <value>This information helps you to understand premined amount of coins within first 1000 blocks</value>
+  </data>
+  <data name="Total transactions" xml:space="preserve">
+    <value>Total transactions</value>
+  </data>
+  <data name="{0} distribution" xml:space="preserve">
+    <value>{0} distribution</value>
+  </data>
+  <data name="{0} rich list" xml:space="preserve">
+    <value>{0} rich list</value>
+  </data>
+  <data name="Remote address configured" xml:space="preserve">
+    <value>Remote address configured</value>
+  </data>
+  <data name="Copy this nodes to your wallet .conf file" xml:space="preserve">
+    <value>Copy this nodes to your wallet .conf file</value>
+  </data>
+  <data name="Explorer" xml:space="preserve">
+    <value>Explorer</value>
+  </data>
+  <data name="Feel free to donate {0}" xml:space="preserve">
+    <value>Feel free to donate {0}</value>
+  </data>
+  <data name="If you have problem to sync your wallet with {0} blockchain - use the following nodes to fix it." xml:space="preserve">
+    <value>If you have problem to sync your wallet with {0} blockchain - use the following nodes to fix it.</value>
+  </data>
+  <data name="Node" xml:space="preserve">
+    <value>Node</value>
+  </data>
+  <data name="Peer list" xml:space="preserve">
+    <value>Peer list</value>
+  </data>
+  <data name="Ping" xml:space="preserve">
+    <value>Ping</value>
+  </data>
+  <data name="Public api calls" xml:space="preserve">
+    <value>Public api calls</value>
+  </data>
+  <data name="Returns current balance of given address" xml:space="preserve">
+    <value>Returns current balance of given address</value>
+  </data>
+  <data name="Returns current money supply" xml:space="preserve">
+    <value>Returns current money supply</value>
+  </data>
+  <data name="Returns information about the block with the given hash." xml:space="preserve">
+    <value>Returns information about the block with the given hash.</value>
+  </data>
+  <data name="Returns information for given address" xml:space="preserve">
+    <value>Returns information for given address</value>
+  </data>
+  <data name="Returns raw transaction representation for given transaction id. decrypt can be set to 0(false) or 1(true)." xml:space="preserve">
+    <value>Returns raw transaction representation for given transaction id. decrypt can be set to 0(false) or 1(true).</value>
+  </data>
+  <data name="Returns the current block index." xml:space="preserve">
+    <value>Returns the current block index.</value>
+  </data>
+  <data name="Returns the current difficulty." xml:space="preserve">
+    <value>Returns the current difficulty.</value>
+  </data>
+  <data name="Returns the hash of the block at ; index 0 is the genesis block." xml:space="preserve">
+    <value>Returns the hash of the block at ; index 0 is the genesis block.</value>
+  </data>
+  <data name="Returns the number of connections the block explorer has to other nodes." xml:space="preserve">
+    <value>Returns the number of connections the block explorer has to other nodes.</value>
+  </data>
+  <data name="Synchronization" xml:space="preserve">
+    <value>Synchronization</value>
+  </data>
+  <data name="This information helps to understand how much nodes are connected to wallet." xml:space="preserve">
+    <value>This information helps to understand how much nodes are connected to wallet.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Want this explorer for your coin? contact: cryptocore.explorer@gmail.com or discord (opens in new window)" xml:space="preserve">
+    <value>Want this explorer for your coin? contact: cryptocore.explorer@gmail.com or discord (opens in new window)</value>
+  </data>
+  <data name="Active masternodes with ENABLED or WATCHDOG_EXPIRED status" xml:space="preserve">
+    <value>Active masternodes with ENABLED or WATCHDOG_EXPIRED status</value>
+  </data>
+  <data name="Active time" xml:space="preserve">
+    <value>Active time</value>
+  </data>
+  <data name="AVG masternode reward frequency" xml:space="preserve">
+    <value>AVG masternode reward frequency</value>
+  </data>
+  <data name="Based on last 24h incomes" xml:space="preserve">
+    <value>Based on last 24h incomes</value>
+  </data>
+  <data name="Blocks with MN rewards. Not all blocks may include masternode reward" xml:space="preserve">
+    <value>Blocks with MN rewards. Not all blocks may include masternode reward</value>
+  </data>
+  <data name="Coins locked" xml:space="preserve">
+    <value>Coins locked</value>
+  </data>
+  <data name="Daily income" xml:space="preserve">
+    <value>Daily income</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="Last 24h blocks" xml:space="preserve">
+    <value>Last 24h blocks</value>
+  </data>
+  <data name="Last 24h MN rewards" xml:space="preserve">
+    <value>Last 24h MN rewards</value>
+  </data>
+  <data name="Last payment" xml:space="preserve">
+    <value>Last payment</value>
+  </data>
+  <data name="Masternode list update time is ~20 min." xml:space="preserve">
+    <value>Masternode list update time is ~20 min.</value>
+  </data>
+  <data name="Monthly income" xml:space="preserve">
+    <value>Monthly income</value>
+  </data>
+  <data name="Precise amount of {0} received by masternodes" xml:space="preserve">
+    <value>Precise amount of {0} received by masternodes</value>
+  </data>
+  <data name="Received amount" xml:space="preserve">
+    <value>Received amount</value>
+  </data>
+  <data name="Required coins for masternode" xml:space="preserve">
+    <value>Required coins for masternode</value>
+  </data>
+  <data name="ROI (annual)" xml:space="preserve">
+    <value>ROI (annual)</value>
+  </data>
+  <data name="ROI(%)" xml:space="preserve">
+    <value>ROI(%)</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>STATUS</value>
+  </data>
+  <data name="Total amount of masternodes" xml:space="preserve">
+    <value>Total amount of masternodes</value>
+  </data>
+  <data name="Yearly income" xml:space="preserve">
+    <value>Yearly income</value>
+  </data>
+  <data name="{0} address" xml:space="preserve">
+    <value>{0} address</value>
+  </data>
+  <data name="{0} masternode explorer" xml:space="preserve">
+    <value>{0} masternode explorer</value>
+  </data>
+  <data name="{0} masternodes list" xml:space="preserve">
+    <value>{0} masternodes list</value>
+  </data>
+  <data name="{0} masternodes stats" xml:space="preserve">
+    <value>{0} masternodes stats</value>
+  </data>
+  <data name="% of pools hashrate" xml:space="preserve">
+    <value>% of pools hashrate</value>
+  </data>
+  <data name="% of total hashrate (may be &gt; 100%)" xml:space="preserve">
+    <value>% of total hashrate (may be &gt; 100%)</value>
+  </data>
+  <data name="Address does not cointains any transactions" xml:space="preserve">
+    <value>Address does not cointains any transactions</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="Block is not indexed yet and may be slow to display." xml:space="preserve">
+    <value>Block is not indexed yet and may be slow to display.</value>
+  </data>
+  <data name="Confirmations" xml:space="preserve">
+    <value>Confirmations</value>
+  </data>
+  <data name="Current network hashrate" xml:space="preserve">
+    <value>Current hashrate</value>
+  </data>
+  <data name="Date/Time" xml:space="preserve">
+    <value>Date/Time</value>
+  </data>
+  <data name="Do not mine on pools that take more than 50% of network. This helps to keep network stability." xml:space="preserve">
+    <value>Do not mine on pools that take more than 50% of network. This helps to keep network stability.</value>
+  </data>
+  <data name="Important information!" xml:space="preserve">
+    <value>Important information!</value>
+  </data>
+  <data name="Information updated" xml:space="preserve">
+    <value>Information updated</value>
+  </data>
+  <data name="Known pool hashrate" xml:space="preserve">
+    <value>Known pool hashrate</value>
+  </data>
+  <data name="Non standard" xml:space="preserve">
+    <value>Non standard</value>
+  </data>
+  <data name="Nothing found" xml:space="preserve">
+    <value>Nothing found</value>
+  </data>
+  <data name="Percent &gt; 100% means than network is growing" xml:space="preserve">
+    <value>Percent &gt; 100% means than network is growing</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="Please note: Network hash rate is approximately amount calculated in each block" xml:space="preserve">
+    <value>Please note: Network hash rate is approximately amount calculated in each block</value>
+  </data>
+  <data name="Pool" xml:space="preserve">
+    <value>Pool</value>
+  </data>
+  <data name="Pool hashrate" xml:space="preserve">
+    <value>Pool hashrate</value>
+  </data>
+  <data name="Pool workers" xml:space="preserve">
+    <value>Pool workers</value>
+  </data>
+  <data name="Taken from public pools api" xml:space="preserve">
+    <value>Taken from public pools api</value>
+  </data>
+  <data name="This information helps you to understand most popular pools of {0}" xml:space="preserve">
+    <value>This information helps you to understand most popular pools of {0}</value>
+  </data>
+  <data name="Total workers" xml:space="preserve">
+    <value>Total workers</value>
+  </data>
+  <data name="Transaction or block may be not sync yet." xml:space="preserve">
+    <value>Transaction or block may be not sync yet.</value>
+  </data>
+  <data name="Try different address, transaction or block." xml:space="preserve">
+    <value>Try different address, transaction or block.</value>
+  </data>
+  <data name="Unconfirmed transaction! Block may become orphan and will be excluded from best block chain" xml:space="preserve">
+    <value>Unconfirmed transaction! Block may become orphan and will be excluded from best block chain</value>
+  </data>
+  <data name="Why" xml:space="preserve">
+    <value>Why</value>
+  </data>
+  <data name="Your search did not match any transactions, blocks or address." xml:space="preserve">
+    <value>Your search did not match any transactions, blocks or address.</value>
+  </data>
+  <data name="{0} ago" xml:space="preserve">
+    <value>{0} ago</value>
+  </data>
+  <data name="{0} mining pool statistics" xml:space="preserve">
+    <value>{0} mining pool statistics</value>
+  </data>
+  <data name="{0} mining pools" xml:space="preserve">
+    <value>{0} mining pools</value>
+  </data>
+  <data name="{0} transaction" xml:space="preserve">
+    <value>{0} transaction</value>
+  </data>
+  <data name="{0} transaction {1}" xml:space="preserve">
+    <value>{0} transaction {1}</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Amount is approximately." xml:space="preserve">
+    <value>Amount is approximately.</value>
+  </data>
+  <data name="Block explorer is just first step to connect {0} to upcoming payment system." xml:space="preserve">
+    <value>Block explorer is just first step to connect {0} to upcoming payment system.</value>
+  </data>
+  <data name="Block mined using PoS" xml:space="preserve">
+    <value>Block mined using PoS</value>
+  </data>
+  <data name="Coin supply" xml:space="preserve">
+    <value>Coin supply</value>
+  </data>
+  <data name="Current Block" xml:space="preserve">
+    <value>Current Block</value>
+  </data>
+  <data name="Difficulty" xml:space="preserve">
+    <value>Difficulty</value>
+  </data>
+  <data name="Donation to this address will lead for future development of cryptocurrency payment system connected to various white &amp;amp; dark (.onion) market shops." xml:space="preserve">
+    <value>Donation to this address will lead for future development of cryptocurrency payment system connected to various white &amp;amp; dark (.onion) market shops.</value>
+  </data>
+  <data name="Hash" xml:space="preserve">
+    <value>Hash</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="Hi Anonymous" xml:space="preserve">
+    <value>Hi Anonymous</value>
+  </data>
+  <data name="Incoming transaction" xml:space="preserve">
+    <value>Incoming transaction</value>
+  </data>
+  <data name="Last block reward" xml:space="preserve">
+    <value>Last block reward</value>
+  </data>
+  <data name="Last Masternode reward" xml:space="preserve">
+    <value>Last Masternode reward</value>
+  </data>
+  <data name="Latest 20 Confirmed blocks" xml:space="preserve">
+    <value>Latest 20 Confirmed blocks</value>
+  </data>
+  <data name="Masternode price" xml:space="preserve">
+    <value>Masternode price</value>
+  </data>
+  <data name="Masternode price BTC" xml:space="preserve">
+    <value>Masternode price BTC</value>
+  </data>
+  <data name="Masternode price FIAT" xml:space="preserve">
+    <value>Masternode price FIAT</value>
+  </data>
+  <data name="Masternode reward" xml:space="preserve">
+    <value>Masternode reward</value>
+  </data>
+  <data name="Network hash" xml:space="preserve">
+    <value>Network hash</value>
+  </data>
+  <data name="Next reward" xml:space="preserve">
+    <value>Next reward</value>
+  </data>
+  <data name="No transactions found" xml:space="preserve">
+    <value>No transactions found</value>
+  </data>
+  <data name="Outgoing transaction" xml:space="preserve">
+    <value>Outgoing transaction</value>
+  </data>
+  <data name="Please note! This parameter is based on avg masternode reward." xml:space="preserve">
+    <value>Please note! This parameter is based on avg masternode reward.</value>
+  </data>
+  <data name="Please note: Miners reward may be different" xml:space="preserve">
+    <value>Please note: Miners reward may be different</value>
+  </data>
+  <data name="PoS" xml:space="preserve">
+    <value>PoS</value>
+  </data>
+  <data name="PoW" xml:space="preserve">
+    <value>PoW</value>
+  </data>
+  <data name="Proof of stake" xml:space="preserve">
+    <value>Proof of stake</value>
+  </data>
+  <data name="Proof of work" xml:space="preserve">
+    <value>Proof of work</value>
+  </data>
+  <data name="Real profit" xml:space="preserve">
+    <value>Real profit</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>Reward</value>
+  </data>
+  <data name="Thank you for your donation." xml:space="preserve">
+    <value>Thank you for your donation.</value>
+  </data>
+  <data name="Timestamp" xml:space="preserve">
+    <value>Timestamp</value>
+  </data>
+  <data name="Total balance" xml:space="preserve">
+    <value>Total balance</value>
+  </data>
+  <data name="Total balance BTC" xml:space="preserve">
+    <value>Total balance BTC</value>
+  </data>
+  <data name="Total balance FIAT" xml:space="preserve">
+    <value>Total balance FIAT</value>
+  </data>
+  <data name="Total masternode reward BTC" xml:space="preserve">
+    <value>Total masternode reward BTC</value>
+  </data>
+  <data name="Total masternode reward FIAT" xml:space="preserve">
+    <value>Total masternode reward FIAT</value>
+  </data>
+  <data name="Total received" xml:space="preserve">
+    <value>Total received</value>
+  </data>
+  <data name="Total received BTC" xml:space="preserve">
+    <value>Total received BTC</value>
+  </data>
+  <data name="Total received FIAT" xml:space="preserve">
+    <value>Total received FIAT</value>
+  </data>
+  <data name="Total sent" xml:space="preserve">
+    <value>Total sent</value>
+  </data>
+  <data name="Total sent BTC" xml:space="preserve">
+    <value>Total sent BTC</value>
+  </data>
+  <data name="Total sent FIAT" xml:space="preserve">
+    <value>Total sent FIAT</value>
+  </data>
+  <data name="Transactions" xml:space="preserve">
+    <value>Transactions</value>
+  </data>
+  <data name="Transactions of address" xml:space="preserve">
+    <value>Transactions of address</value>
+  </data>
+  <data name="TX Type" xml:space="preserve">
+    <value>TX Type</value>
+  </data>
+  <data name="Unconfirmed blocks" xml:space="preserve">
+    <value>Unconfirmed blocks</value>
+  </data>
+  <data name="{0}  masternode stats" xml:space="preserve">
+    <value>{0}  masternode stats</value>
+  </data>
+  <data name="{0} address {1}" xml:space="preserve">
+    <value>{0} address {1}</value>
+  </data>
+  <data name="{0} block explorer" xml:space="preserve">
+    <value>{0} block explorer</value>
+  </data>
+  <data name="{0} Masternode" xml:space="preserve">
+    <value>{0} Masternode</value>
+  </data>
+  <data name="{0} Masternode {1}" xml:space="preserve">
+    <value>{0} Masternode {1}</value>
+  </data>
+  <data name="(bytes)" xml:space="preserve">
+    <value>(bytes)</value>
+  </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
+  <data name="Block hash" xml:space="preserve">
+    <value>Block hash</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Transactions count" xml:space="preserve">
+    <value>Transactions count</value>
+  </data>
+  <data name="% of Total volume" xml:space="preserve">
+    <value>% of Total volume</value>
+  </data>
+  <data name="Buy (BTC)" xml:space="preserve">
+    <value>Buy (BTC)</value>
+  </data>
+  <data name="Change 24h" xml:space="preserve">
+    <value>Change 24h</value>
+  </data>
+  <data name="Current price" xml:space="preserve">
+    <value>Current price</value>
+  </data>
+  <data name="Difference with last 24h" xml:space="preserve">
+    <value>Difference with last 24h</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Exchange</value>
+  </data>
+  <data name="Explorer supported exchanges" xml:space="preserve">
+    <value>Explorer supported exchanges</value>
+  </data>
+  <data name="Information is precise within ~30min" xml:space="preserve">
+    <value>Information is precise within ~30min</value>
+  </data>
+  <data name="Last (BTC)" xml:space="preserve">
+    <value>Last (BTC)</value>
+  </data>
+  <data name="Last average price on all markets" xml:space="preserve">
+    <value>Last average price on all markets</value>
+  </data>
+  <data name="Market capacity" xml:space="preserve">
+    <value>Market capacity</value>
+  </data>
+  <data name="Once {0} will be listed information about exchanges will appear here" xml:space="preserve">
+    <value>Once {0} will be listed information about exchanges will appear here</value>
+  </data>
+  <data name="Sell (BTC)" xml:space="preserve">
+    <value>Sell (BTC)</value>
+  </data>
+  <data name="This information helps you to find available markets of {0}" xml:space="preserve">
+    <value>This information helps you to find available markets of {0}</value>
+  </data>
+  <data name="Total volume on all markets" xml:space="preserve">
+    <value>Total volume on all markets</value>
+  </data>
+  <data name="Volume (BTC)" xml:space="preserve">
+    <value>Volume (BTC)</value>
+  </data>
+  <data name="Volume 24h" xml:space="preserve">
+    <value>Volume 24h</value>
+  </data>
+  <data name="Weekly income" xml:space="preserve">
+    <value>Weekly income</value>
+  </data>
+  <data name="{0} exchanges" xml:space="preserve">
+    <value>{0} exchanges</value>
+  </data>
+  <data name="{0} is not listed on any know exchange" xml:space="preserve">
+    <value>{0} is not listed on any know exchange</value>
+  </data>
+  <data name="{0} masternodes" xml:space="preserve">
+    <value>{0} masternodes</value>
+  </data>
+  <data name="{0}-BTC last 7 days on exchanges" xml:space="preserve">
+    <value>{0} - BTC last 7 days on exchanges</value>
+  </data>
+  <data name="{0} superfast block explorer with direct blockchain db file access &amp; MongoDB index." xml:space="preserve">
+    <value>{0} superfast block explorer with direct blockchain db file access &amp; MongoDB index.</value>
+  </data>
+  <data name="Zerocoin" xml:space="preserve">
+    <value>Zerocoin</value>
+  </data>
+  <data name="Global avg MN reward" xml:space="preserve">
+    <value>Global avg MN reward</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>Luck</value>
+  </data>
+  <data name="Luck(%)" xml:space="preserve">
+    <value>Luck(%)</value>
+  </data>
+  <data name="Please note! This parameter is based on this masternode reward." xml:space="preserve">
+    <value>Please note! This parameter is based on this masternode reward.</value>
+  </data>
+  <data name="This masternode avg reward" xml:space="preserve">
+    <value>This masternode avg reward</value>
+  </data>
+  <data name="First reward period will be approximately double this time." xml:space="preserve">
+    <value>First reward period will be approximately double this time.</value>
+  </data>
+  <data name="Clear search" xml:space="preserve">
+    <value>Clear search</value>
+  </data>
+  <data name="search masternode by payee address" xml:space="preserve">
+    <value>search masternode by payee address</value>
+  </data>
+  <data name="Average reward" xml:space="preserve">
+    <value>Average reward</value>
+  </data>
+  <data name="Average POS input" xml:space="preserve">
+    <value>Average POS input</value>
+  </data>
+  <data name="Average wait time" xml:space="preserve">
+    <value>Average wait time</value>
+  </data>
+  <data name="Block #" xml:space="preserve">
+    <value>Block #</value>
+  </data>
+  <data name="Block height" xml:space="preserve">
+    <value>Block height</value>
+  </data>
+  <data name="Output split" xml:space="preserve">
+    <value>Output split</value>
+  </data>
+  <data name="Please note: This is last 1000 blocks inputs" xml:space="preserve">
+    <value>Please note: This is last 1000 blocks inputs</value>
+  </data>
+  <data name="POS Mining" xml:space="preserve">
+    <value>POS Mining</value>
+  </data>
+  <data name="Wait time" xml:space="preserve">
+    <value>Wait time</value>
+  </data>
+  <data name="{0} pos mining statistics" xml:space="preserve">
+    <value>{0} pos mining statistics</value>
+  </data>
+  <data name="{0} POS rewards last 100 blocks list" xml:space="preserve">
+    <value>{0} POS rewards last 100 blocks list</value>
+  </data>
+  <data name="{0} POS rewards last 1000 blocks" xml:space="preserve">
+    <value>{0} POS rewards last 1000 blocks</value>
+  </data>
+  <data name="N/A" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="No PoS inputs found." xml:space="preserve">
+    <value>No PoS inputs found.</value>
+  </data>
+  <data name="POW Alghoritm" xml:space="preserve">
+    <value>POW Alghoritm</value>
+  </data>
+  <data name="CryptoCore Wallet Monitor" xml:space="preserve">
+    <value>CryptoCore Wallet Monitor</value>
+  </data>
+  <data name="Monitor multiple masternode status &amp; profit with" xml:space="preserve">
+    <value>Monitor multiple masternode status &amp; profit with</value>
+  </data>
+  <data name="Monitor multiple wallet addresses with" xml:space="preserve">
+    <value>Monitor multiple wallet addresses with</value>
+  </data>
+  <data name="Network hash on block" xml:space="preserve">
+    <value>Network hash on block</value>
+  </data>
+  <data name="Latest {0} Confirmed blocks, 20 on page" xml:space="preserve">
+    <value>Latest {0} Confirmed blocks, 20 on page</value>
+  </data>
+  <data name="Block reward" xml:space="preserve">
+    <value>Block reward</value>
+  </data>
+  <data name="Fee" xml:space="preserve">
+    <value>Fee</value>
+  </data>
+  <data name="Next block" xml:space="preserve">
+    <value>Next block</value>
+  </data>
+  <data name="Previous block" xml:space="preserve">
+    <value>Previous block</value>
+  </data>
+  <data name="Today is {0}" xml:space="preserve">
+    <value>Today is {0}</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="Total mined coin price" xml:space="preserve">
+    <value>Total mined coin price</value>
+  </data>
+  <data name="Wallet monitor" xml:space="preserve">
+    <value>Wallet monitor</value>
+  </data>
+  <data name="{0} block {1}" xml:space="preserve">
+    <value>{0} block {1}</value>
+  </data>
+  <data name="Reward &amp; Fees" xml:space="preserve">
+    <value>Reward &amp; Fees</value>
+  </data>
+  <data name="24h MN blocks" xml:space="preserve">
+    <value>24h blocks</value>
+  </data>
+  <data name="24h MN rewards" xml:space="preserve">
+    <value>24h MN rewards</value>
+  </data>
+  <data name="d" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="h" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="m" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="s" xml:space="preserve">
+    <value>sec</value>
+  </data>
+  <data name="Soon" xml:space="preserve">
+    <value>Soon</value>
+  </data>
+  <data name="Change 14 days" xml:space="preserve">
+    <value>Change 14 days</value>
+  </data>
+  <data name="Change 30 days" xml:space="preserve">
+    <value>Change 30 days</value>
+  </data>
+  <data name="Change 60 days" xml:space="preserve">
+    <value>Change 60 days</value>
+  </data>
+  <data name="Change 7 days" xml:space="preserve">
+    <value>Change 7 days</value>
+  </data>
+  <data name="Change 90 days" xml:space="preserve">
+    <value>Change 90 days</value>
+  </data>
+  <data name="Address statistics" xml:space="preserve">
+    <value>Address statistics</value>
+  </data>
+  <data name="Rich list &amp;amp; Premine" xml:space="preserve">
+    <value>Rich list &amp;amp; Premine</value>
+  </data>
+  <data name="{0} address statistics" xml:space="preserve">
+    <value>{0} address statistics</value>
+  </data>
+  <data name="{0} coin distibution" xml:space="preserve">
+    <value>{0} coin distibution</value>
+  </data>
+  <data name="Active addresses used in last 30 days" xml:space="preserve">
+    <value>Active addresses used in last 30 days</value>
+  </data>
+  <data name="Active addresses used in last 7 days" xml:space="preserve">
+    <value>Active addresses used in last 7 days</value>
+  </data>
+  <data name="Active last 30 days" xml:space="preserve">
+    <value>Active last 30 days</value>
+  </data>
+  <data name="Active last 7 days" xml:space="preserve">
+    <value>Active last 7 days</value>
+  </data>
+  <data name="Addresses in use" xml:space="preserve">
+    <value>Addresses in use</value>
+  </data>
+  <data name="Total addresses that hodl coins" xml:space="preserve">
+    <value>Total addresses that hodl coins</value>
+  </data>
+  <data name="Total addresses used in all time" xml:space="preserve">
+    <value>Total addresses used in all time</value>
+  </data>
+  <data name="Total HODLers" xml:space="preserve">
+    <value>Total HODLers</value>
+  </data>
+  <data name="Blockchain" xml:space="preserve">
+    <value>Blockchain</value>
+  </data>
+  <data name="Memory pool" xml:space="preserve">
+    <value>Memory pool</value>
+  </data>
+  <data name="Memory pool is empty. Next block tx fee will be 0" xml:space="preserve">
+    <value>Memory pool is empty. Next block tx fee will be 0</value>
+  </data>
+  <data name="MNStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Protocol version" xml:space="preserve">
+    <value>Protocol version</value>
+  </data>
+  <data name="Total amount of MN" xml:space="preserve">
+    <value>Total amount of MN</value>
+  </data>
+  <data name="Transaction id" xml:space="preserve">
+    <value>Transaction id</value>
+  </data>
+  <data name="Unconfirmed transaction count" xml:space="preserve">
+    <value>Unconfirmed transaction count</value>
+  </data>
+  <data name="Wallet information" xml:space="preserve">
+    <value>Wallet information</value>
+  </data>
+  <data name="Wallet subversion" xml:space="preserve">
+    <value>Wallet subversion</value>
+  </data>
+  <data name="{0} memory pool" xml:space="preserve">
+    <value>{0} memory pool</value>
+  </data>
+  <data name="{0} unconfirmed transaction list" xml:space="preserve">
+    <value>{0} unconfirmed transaction list</value>
+  </data>
+  <data name="{0} wallet information" xml:space="preserve">
+    <value>{0} wallet information</value>
+  </data>
+  <data name="{0} wallet version &amp; network status information" xml:space="preserve">
+    <value>{0} wallet version &amp; network status information</value>
+  </data>
+  <data name="Claim" xml:space="preserve">
+    <value>Claim</value>
+  </data>
+  <data name="Address failed to validate" xml:space="preserve">
+    <value>Address failed to validate</value>
+  </data>
+  <data name="Address name will be shown prior to public key" xml:space="preserve">
+    <value>Address name will be shown prior to public key</value>
+  </data>
+  <data name="Address successfully validated" xml:space="preserve">
+    <value>Address successfully validated</value>
+  </data>
+  <data name="Claim address" xml:space="preserve">
+    <value>Claim address</value>
+  </data>
+  <data name="Claim your address" xml:space="preserve">
+    <value>Claim your address</value>
+  </data>
+  <data name="Display name" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Please provide address" xml:space="preserve">
+    <value>Please provide address</value>
+  </data>
+  <data name="Please provide name" xml:space="preserve">
+    <value>Please provide name</value>
+  </data>
+  <data name="Please provide signature" xml:space="preserve">
+    <value>Please provide signature</value>
+  </data>
+  <data name="Signature" xml:space="preserve">
+    <value>Signature</value>
+  </data>
+  <data name="{0} claim address" xml:space="preserve">
+    <value>{0} claim address</value>
+  </data>
+  <data name="Block time" xml:space="preserve">
+    <value>Block time</value>
+  </data>
+  <data name="Confirmed &amp; orphans" xml:space="preserve">
+    <value>Confirmed &amp; orphans</value>
+  </data>
+  <data name="Detached or Orphaned blocks are valid blocks which are not part of the main chain." xml:space="preserve">
+    <value>Detached or Orphaned blocks are valid blocks which are not part of the main chain.</value>
+  </data>
+  <data name="Latest 20 {0} orphaned blocks" xml:space="preserve">
+    <value>Latest 20 {0} orphaned blocks</value>
+  </data>
+  <data name="No orphans found" xml:space="preserve">
+    <value>No orphans found</value>
+  </data>
+  <data name="Origin block" xml:space="preserve">
+    <value>Origin block</value>
+  </data>
+  <data name="Orphaned blocks" xml:space="preserve">
+    <value>Orphaned blocks</value>
+  </data>
+  <data name="Transaction count" xml:space="preserve">
+    <value>Transaction count</value>
+  </data>
+  <data name="Transaction list" xml:space="preserve">
+    <value>Transaction list</value>
+  </data>
+  <data name="{0} orphan block {1}" xml:space="preserve">
+    <value>{0} orphan block {1}</value>
+  </data>
+  <data name="{0} orphaned blocks" xml:space="preserve">
+    <value>{0} orphaned blocks</value>
+  </data>
+  <data name="Allocated" xml:space="preserve">
+    <value>Allocated</value>
+  </data>
+  <data name="Allocated for budgets in next superblocks" xml:space="preserve">
+    <value>Allocated for budgets in next superblocks</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="Available for budgets" xml:space="preserve">
+    <value>Available for budgets</value>
+  </data>
+  <data name="Block end" xml:space="preserve">
+    <value>Block end</value>
+  </data>
+  <data name="Block start" xml:space="preserve">
+    <value>Block start</value>
+  </data>
+  <data name="blocks left" xml:space="preserve">
+    <value>blocks left</value>
+  </data>
+  <data name="Budget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="Fee Hash" xml:space="preserve">
+    <value>Fee Hash</value>
+  </data>
+  <data name="Governance" xml:space="preserve">
+    <value>Governance</value>
+  </data>
+  <data name="Is valid" xml:space="preserve">
+    <value>Is valid</value>
+  </data>
+  <data name="Last block" xml:space="preserve">
+    <value>Last block</value>
+  </data>
+  <data name="Masternode TX" xml:space="preserve">
+    <value>Masternode TX</value>
+  </data>
+  <data name="Monthly payment asked" xml:space="preserve">
+    <value>Monthly payment asked</value>
+  </data>
+  <data name="Next payment allocated" xml:space="preserve">
+    <value>Next payment allocated</value>
+  </data>
+  <data name="Next superblock" xml:space="preserve">
+    <value>Next superblock</value>
+  </data>
+  <data name="NO" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="Not valid" xml:space="preserve">
+    <value>Not valid</value>
+  </data>
+  <data name="Payment address" xml:space="preserve">
+    <value>Payment address</value>
+  </data>
+  <data name="Payments asked" xml:space="preserve">
+    <value>Payments asked</value>
+  </data>
+  <data name="Remaining payments" xml:space="preserve">
+    <value>Remaining payments</value>
+  </data>
+  <data name="Superblock budget proposals" xml:space="preserve">
+    <value>Superblock budget proposals</value>
+  </data>
+  <data name="This information helps you to find available budgets for {0}" xml:space="preserve">
+    <value>This information helps you to find available budgets for {0}</value>
+  </data>
+  <data name="This information helps you to find available {0} masternode owner votes for budget {1}" xml:space="preserve">
+    <value>This information helps you to find available {0} masternode owner votes for budget {1}</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Total budget" xml:space="preserve">
+    <value>Total budget</value>
+  </data>
+  <data name="Total budget asked" xml:space="preserve">
+    <value>Total budget asked</value>
+  </data>
+  <data name="Total budgets in next superblocks" xml:space="preserve">
+    <value>Total budgets in next superblocks</value>
+  </data>
+  <data name="Valid" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="View Document" xml:space="preserve">
+    <value>View Document</value>
+  </data>
+  <data name="Vote" xml:space="preserve">
+    <value>Vote</value>
+  </data>
+  <data name="Vote budget NO" xml:space="preserve">
+    <value>Vote budget NO</value>
+  </data>
+  <data name="Vote budget YES" xml:space="preserve">
+    <value>Vote budget YES</value>
+  </data>
+  <data name="Votes (No)" xml:space="preserve">
+    <value>Votes (No)</value>
+  </data>
+  <data name="Votes (Yes)" xml:space="preserve">
+    <value>Votes (Yes)</value>
+  </data>
+  <data name="Votes NO" xml:space="preserve">
+    <value>Votes NO</value>
+  </data>
+  <data name="Votes YES" xml:space="preserve">
+    <value>Votes YES</value>
+  </data>
+  <data name="Wait time:" xml:space="preserve">
+    <value>Wait time:</value>
+  </data>
+  <data name="YES" xml:space="preserve">
+    <value>YES</value>
+  </data>
+  <data name="{0} budget information" xml:space="preserve">
+    <value>{0} budget information</value>
+  </data>
+  <data name="{0} budget votes" xml:space="preserve">
+    <value>{0} budget votes</value>
+  </data>
+  <data name="{0} budget {1}" xml:space="preserve">
+    <value>{0} budget {1}</value>
+  </data>
+  <data name="{0} budgets" xml:space="preserve">
+    <value>{0} budgets</value>
+  </data>
+  <data name="{0} governance" xml:space="preserve">
+    <value>{0} governance</value>
+  </data>
+</root>
