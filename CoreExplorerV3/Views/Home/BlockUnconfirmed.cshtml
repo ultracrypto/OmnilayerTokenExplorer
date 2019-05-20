@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+@using System.Threading
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+@model ErrorViewModel
+@{
+    ViewData["Title"] = SharedLocalizer["Block not yet indexed."];
+}
+<div class="font-weight-bold py-3 mb-4 d-flex">
+    <div>
+        <img src="~/images/coins_custom/@{WriteLiteral(ViewBag.V3Logo);}_45.png" width="45" height="45" id="logo_45" />
+    </div>
+    <div class="ml-1">
+        <h4 class="font-weight-bold margin0">@SharedLocalizer["{0} block explorer", ViewBag.CoinName]</h4>
+        <div class="text-muted small mt-1 font-weight-normal">
+            @string.Format(SharedLocalizer["Today is {0}"].Value, @DateTime.UtcNow.Date.ToString("D", Thread.CurrentThread.CurrentUICulture))
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-danger">
+    <span class="ion ion-md-close-circle text-large" style="color: darkred"></span> &nbsp; <span class="text-danger text-large font-weight-bold py-3 mb-4">@SharedLocalizer["Error."]</span>
+    <br /><br />
+    <strong>@SharedLocalizer["Block exists but not yet indexed."]</strong>
+</div>

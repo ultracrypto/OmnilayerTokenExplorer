@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+
+@{bool isHorizontal = ViewData["LayoutSidenavHorizontal"] != null && ViewData["LayoutSidenavHorizontal"].ToString() == "True";}
+@{string currentController = ViewContext.RouteData.Values["controller"].ToString();}
+@{string currentAction = ViewContext.RouteData.Values["action"].ToString();}
+<!-- Layout sidenav -->
+<div id="layout-sidenav" class="@(isHorizontal ? "layout-sidenav-horizontal sidenav-horizontal container-p-x flex-grow-0" : "layout-sidenav sidenav-vertical") sidenav bg-sidenav-theme">
+    <!-- Inner -->
+    <ul class="sidenav-inner@(!isHorizontal ? " py-1" : "")">
+        <li class="sidenav-header font-weight-normal" style="font-size:16px; padding: 10px 0 0 30px; text-transform: uppercase;">@SharedLocalizer["Blockchain"]</li>
+        <li class="sidenav-item@(currentController == "Home" ? " active" : "")">
+            <a href="@(string.IsNullOrEmpty(ViewBag.AppendUrl) ? "/" : @ViewBag.AppendUrl)" class="sidenav-link">
+                <i class="sidenav-icon sidenav-icon-custom ion ion-md-menu"></i>
+                <div>@SharedLocalizer["Explorer"]</div>
+            </a>
+        </li>
+        @if (ViewBag.IsCoinDistribution)
+        {
+            <li class="sidenav-item@(currentController == "Rich" ? " active" : "")">
+
+                <a href="@ViewBag.AppendUrl/distribution" class="sidenav-link">
+                    <i class="sidenav-icon sidenav-icon-custom ion ion ion-md-wallet"></i>
+                    <div>@SharedLocalizer["Coin distribution"]</div>
+                </a>
+            </li>
+        }
+        @if (ViewBag.IsExchange)
+        {
+            <li class="sidenav-item@(currentController == "Exchange" ? " active" : "")">
+                <a href="@ViewBag.AppendUrl/exchanges" class="sidenav-link">
+                    <i class="sidenav-icon sidenav-icon-custom ion ion-logo-usd"></i>
+                    <div>@SharedLocalizer["Exchanges"]</div>
+                </a>
+            </li>
+        }
+        <li class="sidenav-header font-weight-normal" style="font-size:16px; padding: 10px 0 0 30px; text-transform: uppercase;">@SharedLocalizer["Support information"]</li>
+        <li class="sidenav-item@(currentController == "Help" && currentAction == "Index" ? " active" : "")">
+            <a href="@ViewBag.AppendUrl/connections" class="sidenav-link">
+                <i class="sidenav-icon sidenav-icon-custom ion ion-ios-radio"></i>
+                <div>@SharedLocalizer["Connections"]</div>
+            </a>
+        </li>
+        <li class="sidenav-item@(currentController == "Api" ? " active" : "")">
+            <a href="@ViewBag.AppendUrl/api" class="sidenav-link">
+                <i class="sidenav-icon sidenav-icon-custom ion ion-md-git-pull-request"></i>
+                <div>@SharedLocalizer["Api"]</div>
+            </a>
+        </li>
+        <li class="sidenav-item@(currentController == "Claim" && currentAction == "Index" ? " active" : "")">
+            <a href="@ViewBag.AppendUrl/claim_form" class="sidenav-link">
+                <i class="sidenav-icon sidenav-icon-custom ion ion-ios-create"></i>
+                <div>@SharedLocalizer["Claim address"]</div>
+            </a>
+        </li>
+        <li class="sidenav-item@(currentController == "Help" && currentAction == "Walletinfo" ? " active" : "")">
+            <a href="@ViewBag.AppendUrl/walletinfo" class="sidenav-link">
+                <i class="sidenav-icon sidenav-icon-custom ion ion-md-help-circle-outline"></i>
+                <div>@SharedLocalizer["Wallet version"]</div>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- / Layout sidenav -->

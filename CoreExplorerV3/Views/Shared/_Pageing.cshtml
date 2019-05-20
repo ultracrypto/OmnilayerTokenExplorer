@@ -1,0 +1,75 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+
+@model CoreExplorerV3.Models.Pageing
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+<div class="col-md-12">
+    @{
+        var addon = "";
+        if (Model.Addon != null && Model.Addon != "")
+        {
+            addon = Model.Addon + "&";
+        }
+        var totalPages = Math.Ceiling((double)@Model.MaxCount / @Model.OnPage);
+    }
+    @{
+        var pageing = "";
+    }
+    @{
+        var iepr = 1;
+        if (totalPages > 1)
+        {
+            if (Model.Pagenum < 2)
+            {
+                iepr = 1;
+            }
+            else
+            {
+                iepr = Model.Pagenum - 1;
+            }
+            pageing += @"<ul class=""pagination""><li class=""paginate_button page-item previous""><a class=""page-link"" href=""?" + addon + "pagenum=" + iepr + @""">&laquo; " + SharedLocalizer["Prev"].Value + "</a></li>";
+            var nextpage = 1;
+            var continue1 = false;
+            var continue2 = false;
+            for (var ipage = 1; ipage < totalPages + 1; ipage++)
+            {
+                if (ipage - 3 > Model.Pagenum && ipage < totalPages - 2)
+                {
+                    if (continue1 == false)
+                    {
+                        pageing += @"<li class=""paginate_button page-item disabled"" id=""txaddr_ellipsis"" ><a href=""#"" class=""page-link"" >…</a></li>";
+                        continue1 = true;
+                    }
+                    continue;
+                }
+                if (ipage + 3 < Model.Pagenum && ipage > 3)
+                {
+                    if (continue2 == false)
+                    {
+                        pageing += @"<li class=""paginate_button page-item disabled"" id=""txaddr_ellipsis"" ><a href=""#"" class=""page-link"" >…</a></li>";
+                        continue2 = true;
+                    }
+                    continue;
+                }
+                if (ipage == Model.Pagenum)
+                {
+                    pageing += @"<li class=""paginate_button page-item active""><a class=""page-link"" href=""?" + addon + "pagenum=" + ipage + @""">" + ipage + @"</a></li>";
+                    if (ipage < totalPages)
+                    {
+                        nextpage = ipage + 1;
+                    }
+                }
+                else
+                {
+                    pageing += @"<li class=""paginate_button page-item""><a class=""page-link"" href=""?" + addon + "pagenum=" + ipage + @""">" + ipage + "</a></li >";
+                }
+            }
+            pageing += @"<li class=""paginate_button page-item next""><a class=""page-link"" href=""?" + addon + "pagenum=" + nextpage + @""">" + SharedLocalizer["Next"].Value + " &raquo;</a></li></ul>";
+            pageing = @"<div class=""dataTables_wrapper""><div class=""dataTables_paginate paging_simple_numbers""> " + pageing + "</div></div>";
+            @Html.Raw(pageing);
+        }
+
+    }
+</div>

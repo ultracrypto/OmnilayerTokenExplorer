@@ -1,0 +1,104 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+@using System.Threading
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+@model ApiMon.Models.ClaimModel
+
+@{
+    ViewData["Title"] = SharedLocalizer["{0} claim address", Model.MainCoinModel.CoinName];
+}
+@section Scripts {
+    <!-- Dependencies -->
+    <script>
+        $(function () {
+            // Initialize validation
+            $('#validation-form').validate({
+                focusInvalid: false,
+                rules: {
+                    address: {
+                        required: true
+                    },
+                    signature: {
+                        required: true
+                    },
+                    ownername: {
+                        required: true
+                    }
+                },
+                messages: {
+                    address: "@SharedLocalizer["Please provide address"]",
+                    signature: "@SharedLocalizer["Please provide signature"]",
+                    ownername: "@SharedLocalizer["Please provide name"]"
+                },
+                errorPlacement: function errorPlacement(error, element) {
+                    var $parent = $(element).parents('.form-group');
+
+                    // Do not duplicate errors
+                    if ($parent.find('.jquery-validation-error').length) { return; }
+
+                    $parent.append(
+                        error.addClass('jquery-validation-error small form-text invalid-feedback')
+                    );
+                },
+                highlight: function (element) {
+                    var $el = $(element);
+                    $el.addClass('is-invalid');
+                },
+                unhighlight: function (element) {
+                    $(element).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
+                }
+            });
+        });
+    </script>
+}
+<div class="font-weight-bold py-3 mb-4 d-flex">
+    <div>
+        <img src="~/images/coins_custom/@{WriteLiteral(Model.MainCoinModel.V3Logo);}_45.png" width="45" height="45" id="logo_45" />
+    </div>
+    <div class="ml-1">
+        <h4 class="font-weight-bold margin0">@ViewData["Title"]</h4>
+        <div class="text-muted small mt-1 font-weight-normal">
+            @string.Format(SharedLocalizer["Today is {0}"].Value, @DateTime.UtcNow.Date.ToString("D", Thread.CurrentThread.CurrentUICulture))
+        </div>
+    </div>
+</div>
+@if (Model.Success != null && Model.Success.Value == true)
+{
+    <div class="alert alert-success">
+        @SharedLocalizer["Address successfully validated"]<br />
+        @SharedLocalizer["Address name will be shown prior to public key"]
+    </div>
+}
+@if (Model.Error != null && Model.Error.Value == true)
+{
+    <div class="alert alert-danger">
+        @SharedLocalizer["Address failed to validate"]
+    </div>
+}
+<div class="card mb-4">
+    <h6 class="card-header">
+        @SharedLocalizer["Claim your address"]
+    </h6>
+    <div class="card-body">
+        <form method="post" action="@ViewBag.AppendUrl/claim_post" id="validation-form">
+            <div class="form-group">
+                <label class="form-label">* @SharedLocalizer["Address"]</label>
+                <input name="address" value="@Model.Address" type="text" class="form-control" placeholder="@SharedLocalizer["Address"]">
+            </div>
+            <div class="form-group">
+                <label class="form-label">@SharedLocalizer["Message"]</label>
+                <textarea name="message" class="form-control" rows="3" placeholder="@SharedLocalizer["Message"]"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">* @SharedLocalizer["Signature"]</label>
+                <input name="signature" type="text" class="form-control" placeholder="@SharedLocalizer["Signature"]">
+            </div>
+            <div class="form-group">
+                <label class="form-label">* @SharedLocalizer["Display name"]</label>
+                <input name="ownername" type="text" class="form-control" placeholder="@SharedLocalizer["Display name"]">
+            </div>
+            <button type="submit" class="btn btn-primary">@SharedLocalizer["Claim"]</button>
+        </form>
+    </div>
+</div>

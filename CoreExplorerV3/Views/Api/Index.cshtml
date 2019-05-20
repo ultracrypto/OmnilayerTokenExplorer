@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+@model CoreExplorerV3.Models.ApiViewModel
+@{
+    ViewData["Title"] = SharedLocalizer["Public api calls"];
+}
+
+<div class="font-weight-bold py-3 mb-4 d-flex">
+    <div>
+        <img src="~/images/coins_custom/@{WriteLiteral(Model.MainCoinModel.V3Logo);}_45.png" width="45" height="45" id="logo_45" />
+    </div>
+    <div class="ml-1">
+        <h4 class="font-weight-bold margin0">@SharedLocalizer["Public api calls"]</h4>
+        <div class="text-muted small mt-1 font-weight-normal">
+            @string.Format(SharedLocalizer["{0} api calls available for explorer"].Value, ViewBag.CoinName.ToString())
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">getdifficulty</h6>
+    </div>
+    <div class="card-body">
+        <em>@SharedLocalizer["Returns the current difficulty."]</em><br />
+        <a href="/api/getdifficulty">/api/getdifficulty</a>
+    </div>
+</div><br />
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">getconnectioncount</h6>
+    </div>
+    <div class="card-body">
+        <em>@SharedLocalizer["Returns the number of connections the block explorer has to other nodes."]</em><br />
+        <a href="/api/getconnectioncount">/api/getconnectioncount</a>
+    </div>
+</div><br />
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">getblockhash [index]</h6>
+    </div>
+    <div class="card-body">
+        <em>@SharedLocalizer["Returns the hash of the block at ; Minimal block is 559529."]</em><br />
+        <a href="/api/getblockhash?index=559529">/api/getblockhash?index=559529</a>
+    </div>
+</div><br />
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">getblock [index]</h6>
+    </div>
+    <div class="card-body">
+        <em>@SharedLocalizer["Returns information about the block with the given hash."]</em><br />
+        <a href="/api/getblock?hash=@Model.BlockHash">/api/getblock?hash=@Model.BlockHash</a>
+    </div>
+</div><br />
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">getrawtransaction [txid]</h6>
+    </div>
+    <div class="card-body">
+        <em>@SharedLocalizer["Returns raw transaction representation for given transaction id. Only asset transaction supports."]</em><br />
+        <a href="/api/getrawtransaction?txid=@Model.Tx&amp;decrypt=0">/api/getrawtransaction?txid=@Model.Tx</a>
+    </div>
+</div><br />
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">getmoneysupply</h6>
+    </div>
+    <div class="card-body">
+        <em>@SharedLocalizer["Returns current money supply"]</em><br />
+        <a href="/ext/getmoneysupply">/ext/getmoneysupply</a>
+    </div>
+</div><br />
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">getaddress (/ext/getaddress/hash)</h6>
+    </div>
+    <div class="card-body">
+        <em>@SharedLocalizer["Returns information for given address"]</em><br />
+        <a href="/ext/getaddress/131dNpFcE3DQib4jSyFEJL2xaEMGUo1eUE">/ext/getaddress/131dNpFcE3DQib4jSyFEJL2xaEMGUo1eUE</a>
+    </div>
+</div><br />
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">getbalance (/ext/getbalance/hash)</h6>
+    </div>
+    <div class="card-body">
+        <em>@SharedLocalizer["Returns current balance of given address"]</em><br />
+        <a href="/ext/getbalance/131dNpFcE3DQib4jSyFEJL2xaEMGUo1eUE">/ext/getbalance/131dNpFcE3DQib4jSyFEJL2xaEMGUo1eUE</a>
+    </div>
+</div>
+

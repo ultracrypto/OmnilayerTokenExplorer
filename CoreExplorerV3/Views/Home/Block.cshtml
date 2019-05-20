@@ -1,0 +1,251 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+@using System.Threading
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+@model CoreExplorerV3.Models.BlockViewModel
+@{
+    ViewData["Title"] = string.Format(SharedLocalizer["{0} block {1}"].Value, Model.MainCoinModel.CoinName, Model.Block.Height);
+}
+<div class="font-weight-bold py-3 mb-4 d-flex">
+    <div>
+        <img src="~/images/coins_custom/@{WriteLiteral(Model.MainCoinModel.V3Logo);}_45.png" width="45" height="45" id="logo_45" />
+    </div>
+    <div class="ml-1">
+        <h4 class="font-weight-bold margin0">@string.Format(SharedLocalizer["{0} block {1}"].Value, Model.MainCoinModel.CoinName, Model.Block.Height)</h4>
+        <div class="text-muted small mt-1 font-weight-normal wrap-long">
+            @SharedLocalizer["Block hash"]: @Model.Block.Hash
+        </div>
+    </div>
+</div>
+@{
+    String addConfirmed = string.Empty;
+    if (!Model.IsConfirmed)
+    {
+        <div class="alert alert-info">
+            <b>@SharedLocalizer["Important information!"]</b>
+            <br />@SharedLocalizer["Block is not indexed yet and may be slow to display."]
+        </div>
+    }
+}
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-logo-buffer text-large text-info"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Confirmations"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large text-nowrap">
+                            @Model.Block.ConfirmationsClient
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-ios-information-circle text-large text-success"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Date/Time, UTC"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Model.Block.BlockTime.ToString("MM/dd/yyyy h:mm:ss tt", Thread.CurrentThread.CurrentUICulture)
+                        </div>
+                        <div class="small">
+                            (<span title="@Model.Block.BlockTime.ToString("yyyy-mm-dd HH:mm")">@Model.Block.TimeFromNowUtc</span>)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-md-cog text-large text-danger"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Difficulty"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Html.Raw(AmountHelper.BigSmallNumber(Model.Block.Difficulty))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-md-resize text-large text-info"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Size"] @SharedLocalizer["(bytes)"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large text-nowrap">
+                            @Model.Block.Size
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-md-add-circle-outline text-large text-info"></span>
+                <span class="text-big text-nowrap text-cart-padd">@SharedLocalizer["BTC Fee"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Html.Raw(AmountHelper.BigSmallNumber(Model.Block.BTCFee))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-md-add-circle-outline text-large text-info"></span>
+                <span class="text-big text-nowrap text-cart-padd">@SharedLocalizer["OMNI Fee"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Html.Raw(AmountHelper.BigSmallNumber(Model.Block.OMNIFee))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index text-nowrap">
+                <span class="ion ion-md-done-all text-large text-info"></span>
+                <span class="text-big text-nowrap text-cart-padd">@SharedLocalizer["Transactions count"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Model.Block.TxCount
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index text-nowrap">
+                <span class="ion ion-md-done-all text-large text-info"></span>
+                <span class="text-big text-nowrap text-cart-padd">@SharedLocalizer["{0} Transfered", Model.MainCoinModel.CoinName]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Model.Block.TotalTransfered
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("_Pageing", Model.Pageing)
+<br />
+@foreach (var trx in Model.ListTransactions)
+{
+    <div class="card blockTx" style="margin-bottom: 25px">
+        <div class="card-header topLine text-center text-large">
+            <a href="@ViewBag.AppendUrl/transaction/@trx.txid">@trx.txid</a>
+        </div>
+        <div class="card-body row">
+            <div class="col-sm-12 text-large">
+                @trx.type
+            </div>
+            <div class="col-md-12 col-xl-5">
+                <table class="table table-bordered table-bordered-color">
+                    <tbody>
+                        <tr>
+                            <td class="address">
+                                <div class="cell-address-tx" style="min-width:110px; max-width: 100%">
+                                    <div class="cell-overflow-address-tx">
+                                        @if (trx.type_int == 50)
+                                        {
+                                            @trx.type
+                                        }
+                                        else
+                                        {
+                                            <a href="@ViewBag.AppendUrl/address/@trx.sendingaddress@addConfirmed">@AmountHelper.AddressToClaim(trx.sendingaddress, ViewBag.Claims)</a>
+                                        }
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="number number-in">@Html.Raw(AmountHelper.BigSmallNumber(trx.Amount))</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12 col-xl-1 text-center txIcon">
+                <i class="ion ion-md-arrow-round-forward d-none d-xl-block"></i>
+                <i class="ion ion-md-arrow-round-down d-block d-xl-none"></i>
+            </div>
+            <div class="col-md-12 col-xl-6">
+                <table class="table table-bordered table-bordered-color">
+                    <tbody>
+                        <tr>
+                            <td class="address">
+                                <div class="cell-address-tx" style="min-width:110px; max-width: 100%">
+                                    <div class="cell-overflow-address-tx">
+                                        @if (trx.type_int == 50)
+                                        {
+                                            <a href="@ViewBag.AppendUrl/address/@trx.sendingaddress@addConfirmed">@AmountHelper.AddressToClaim(trx.sendingaddress, ViewBag.Claims)</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@ViewBag.AppendUrl/address/@trx.referenceaddress@addConfirmed">@AmountHelper.AddressToClaim(trx.referenceaddress, ViewBag.Claims)</a>
+
+                                        }
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="number number-out">@Html.Raw(AmountHelper.BigSmallNumber(trx.Amount))</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bottomLine">
+                @if (trx.valid)
+                {
+                    <span class="txValues sumOut">@Html.Raw(AmountHelper.BigSmallNumber(trx.Amount)) @Model.MainCoinModel.CoinSymbol</span>
+                }
+                else
+                {
+                    <span class="txValues sumOut" style="background-color: #FF0000; color: #FFFFFF; padding: 0 5px 0 5px">@SharedLocalizer["Invalid TX"] @Html.Raw(AmountHelper.BigSmallNumber(trx.Amount)) @Model.MainCoinModel.CoinSymbol</span>
+                }
+            </div>
+        </div>
+    </div>
+}
+@await Html.PartialAsync("_Pageing", Model.Pageing)
+
+

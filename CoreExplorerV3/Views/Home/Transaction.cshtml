@@ -1,0 +1,193 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+@using System.Threading
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+@model CoreExplorerV3.Models.TransactionViewModel
+@{
+    ViewData["Title"] = SharedLocalizer["{0} transaction {1}", Model.MainCoinModel.CoinName, Model.Trx];
+}
+<div class="font-weight-bold py-3 mb-4 d-flex">
+    <div>
+        <img src="~/images/coins_custom/@{WriteLiteral(Model.MainCoinModel.V3Logo);}_45.png" width="45" height="45" id="logo_45" />
+    </div>
+    <div class="ml-1">
+        <h4 class="font-weight-bold margin0">@SharedLocalizer["{0} transaction", Model.MainCoinModel.CoinName]</h4>
+        <div class="text-muted small mt-1 font-weight-normal">
+            @Model.Trx
+        </div>
+    </div>
+</div>
+@{
+    String addConfirmed = string.Empty;
+    if (!Model.IsConfirmed)
+    {
+        addConfirmed = "?unconfirmed=true";
+        <div class="alert alert-info">
+            <b>@SharedLocalizer["Important information!"]</b>
+            <br />@SharedLocalizer["Unconfirmed transaction! Block may become orphan and will be excluded from best block chain"]
+            <br />@SharedLocalizer["Block is not indexed yet and may be slow to display."]
+        </div>
+    }
+}
+<div class="row">
+
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-ios-information-circle text-large text-success"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Date/Time, UTC"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Model.Transaction.BlockDateTime.ToString("MM/dd/yyyy h:mm:ss tt", Thread.CurrentThread.CurrentUICulture)
+                        </div>
+                        <div class="small">
+                            (<span title="@Model.Transaction.BlockDateTime.ToString("yyyy-mm-dd HH:mm")">@Model.Transaction.TimeFromNowUtc</span>)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-ios-information-circle text-large text-success"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Confirmations"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Model.Transaction.ConfirmationsClient
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-ios-information-circle text-large text-success"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Bitcoin fee"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Model.Transaction.fee
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-rich">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-ios-information-circle text-large text-success"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Omni fee"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display-left">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            0.000
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-xl-12">
+        <div class="card mb-4">
+            <div class="card-header custom-padding-header-tx">
+                <span class="ion ion-md-albums text-large text-info"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Block"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-tx">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large wrap-long">
+                            <a href="@ViewBag.AppendUrl/block/@Model.Transaction.blockhash">@Model.Transaction.blockhash</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card blockTx" style="margin-bottom: 25px">
+    <div class="card-header topLine text-center text-large">
+        <a href="@ViewBag.AppendUrl/transaction/@Model.Transaction.txid">@Model.Transaction.txid</a>
+    </div>
+    <div class="card-body row">
+        <div class="col-sm-12 text-large">
+            @Model.Transaction.type
+        </div>
+        <div class="col-md-12 col-xl-5">
+            <table class="table table-bordered table-bordered-color">
+                <tbody>
+                    <tr>
+                        <td class="address">
+                            <div class="cell-address-tx" style="min-width:110px; max-width: 100%">
+                                <div class="cell-overflow-address-tx">
+                                    @if (Model.Transaction.type_int == 50)
+                                    {
+                                        @Model.Transaction.type
+                                    }
+                                    else
+                                    {
+                                        <a href="@ViewBag.AppendUrl/address/@Model.Transaction.sendingaddress@addConfirmed">@AmountHelper.AddressToClaim(Model.Transaction.sendingaddress, ViewBag.Claims)</a>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td class="number number-in">@Html.Raw(AmountHelper.BigSmallNumber(Model.Transaction.Amount))</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12 col-xl-1 text-center txIcon">
+            <i class="ion ion-md-arrow-round-forward d-none d-xl-block"></i>
+            <i class="ion ion-md-arrow-round-down d-block d-xl-none"></i>
+        </div>
+        <div class="col-md-12 col-xl-6">
+            <table class="table table-bordered table-bordered-color">
+                <tbody>
+                    <tr>
+                        <td class="address">
+                            <div class="cell-address-tx" style="min-width:110px; max-width: 100%">
+                                <div class="cell-overflow-address-tx">
+                                    @if (Model.Transaction.type_int == 50)
+                                    {
+                                        <a href="@ViewBag.AppendUrl/address/@Model.Transaction.sendingaddress@addConfirmed">@AmountHelper.AddressToClaim(Model.Transaction.sendingaddress, ViewBag.Claims)</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@ViewBag.AppendUrl/address/@Model.Transaction.referenceaddress@addConfirmed">@AmountHelper.AddressToClaim(Model.Transaction.referenceaddress, ViewBag.Claims)</a>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td class="number number-out">@Html.Raw(AmountHelper.BigSmallNumber(Model.Transaction.Amount))</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bottomLine">
+            @if (Model.Transaction.valid)
+            {
+                <span class="txValues sumOut">@Html.Raw(AmountHelper.BigSmallNumber(Model.Transaction.Amount)) @Model.MainCoinModel.CoinSymbol</span>
+            }
+            else
+            {
+                <span class="txValues sumOut" style="background-color: #FF0000; color: #FFFFFF; padding: 0 5px 0 5px">@SharedLocalizer["Invalid TX"] @Html.Raw(AmountHelper.BigSmallNumber(Model.Transaction.Amount)) @Model.MainCoinModel.CoinSymbol</span>
+            }
+        </div>
+    </div>
+</div>

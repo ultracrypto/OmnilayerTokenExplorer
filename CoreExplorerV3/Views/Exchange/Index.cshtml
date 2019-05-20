@@ -1,0 +1,370 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+@using System.Threading
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+@model CoreExplorerV3.Models.ExchangeIndexViewModel
+@{
+    ViewData["Title"] = string.Format(SharedLocalizer["{0} exchanges"].Value, ViewBag.CoinName.ToString());
+}
+@section Scripts {
+    <!-- Dependencies -->
+    <script>
+        var pluginTrendlineLinear = {
+            beforeDraw: function (chartInstance) {
+                var yScale = chartInstance.scales["y-axis-0"];
+                var canvas = chartInstance.chart;
+                var ctx = canvas.ctx;
+
+                if (chartInstance.options.trendlineLinear) {
+                    var style = chartInstance.options.trendlineLinear.style;
+                    var lineWidth = chartInstance.options.trendlineLinear.width;
+                    style = (style !== undefined) ? style : "rgba(169,169,169, .6)";
+                    lineWidth = (lineWidth !== undefined) ? lineWidth : 3;
+
+                    var data = chartInstance.data.datasets[0].data,
+                        lastIndex = data.length - 1,
+                        datasetMeta = chartInstance.getDatasetMeta(0),
+                        startPos = datasetMeta.data[0]._model.x,
+                        endPos = datasetMeta.data[lastIndex]._model.x,
+                        fitter = new LineFitter();
+
+                    for (var i = 0; i < data.length; i++) {
+                        fitter.add(i, data[i]);
+                    }
+
+                    ctx.lineWidth = lineWidth;
+                    ctx.beginPath();
+                    ctx.moveTo(startPos, yScale.getPixelForValue(fitter.project(0)));
+                    ctx.lineTo(endPos, yScale.getPixelForValue(fitter.project(lastIndex)));
+                    ctx.strokeStyle = style;
+                    ctx.stroke();
+                }
+            }
+        };
+        Chart.plugins.register(pluginTrendlineLinear);
+
+        function LineFitter() {
+            this.count = 0;
+            this.sumX = 0;
+            this.sumX2 = 0;
+            this.sumXY = 0;
+            this.sumY = 0;
+        }
+
+        LineFitter.prototype = {
+            'add': function (x, y) {
+                this.count++;
+                this.sumX += x;
+                this.sumX2 += x * x;
+                this.sumXY += x * y;
+                this.sumY += y;
+            },
+            'project': function (x) {
+                var det = this.count * this.sumX2 - this.sumX * this.sumX;
+                var offset = (this.sumX2 * this.sumY - this.sumX * this.sumXY) / det;
+                var scale = (this.count * this.sumXY - this.sumX * this.sumY) / det;
+                return offset + x * scale;
+            }
+        };
+    </script>
+}
+<div class="font-weight-bold py-3 mb-4 d-flex">
+    <div>
+        <img src="~/images/coins_custom/@{WriteLiteral(Model.MainCoinModel.V3Logo);}_45.png" width="45" height="45" id="logo_45" />
+    </div>
+    <div class="ml-1">
+        <h4 class="font-weight-bold margin0">@ViewData["Title"]</h4>
+        <div class="text-muted small mt-1 font-weight-normal">
+            @string.Format(SharedLocalizer["Today is {0}"].Value, @DateTime.UtcNow.Date.ToString("D", Thread.CurrentThread.CurrentUICulture))
+        </div>
+    </div>
+</div>
+@if (Model.ExchangePriceList.Count == 0)
+{
+    <div class="alert alert-info">
+        <b>@SharedLocalizer["Important information!"]</b>
+        <br />@SharedLocalizer["{0} is not listed on any know exchange", Model.MainCoinModel.CoinName]
+        <br />@SharedLocalizer["Once {0} will be listed information about exchanges will appear here", Model.MainCoinModel.CoinName]
+    </div>
+    <div class="row">
+        @foreach (var ex in Model.Exchanges)
+        {
+            <div class="col-xl-3 col-md-4 col-sm-6 col-12">
+                <div class="card mb-4 exchange-padding">
+                    <a href="@ex.ExchangeUrl" class="border-exchange img-thumbnail img-thumbnail-zoom-in">
+                        <div class="exchange-square">
+                            <img src="/@ex.ExchangeLogo200" width="150" height="150" />
+                            <div class="exchange-name">@ex.Exchange</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-xl-3">
+            <div class="card mb-4 min-block-width-exchange">
+                <div class="card-header custom-padding-header custom-padding-header-index">
+                    <span class="ion ion-ios-information-circle text-large text-success"></span>
+                    <span class="text-big text-cart-padd">@SharedLocalizer["Current price"]</span>
+                </div>
+                <div class="card-body custom-padding custom-padding-header-index">
+                    <div class="d-flex align-items-center">
+                        <div class="ml-0">
+                            <div class="text-large">
+                                @AmountHelper.BTCHelperStringAdvanced(Model.ExchangePrice.Avg)
+                            </div>
+
+                            <div class="text-truncate">
+                                @AmountHelper.FiatHelper(Model.ExchangePrice.Avg * Model.ExchangeFiat.USD, "$")
+                            </div>
+                            <div class="text-truncate">
+                                @AmountHelper.FiatHelper(Model.ExchangePrice.Avg * Model.ExchangeFiat.EUR, "€")
+                            </div>
+                            <div class="small">
+                                @SharedLocalizer["Last average price on all markets"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-3">
+            <div class="card mb-4 min-block-width-exchange">
+                <div class="card-header custom-padding-header custom-padding-header-index">
+                    <span class="ion ion-md-time circle text-large text-success"></span>
+                    <span class="text-big text-cart-padd">@SharedLocalizer["Volume 24h"]</span>
+                </div>
+                <div class="card-body custom-padding custom-padding-header-index">
+                    <div class="d-flex align-items-center">
+                        <div class="ml-0">
+                            <div class="text-large">
+                                @AmountHelper.BTCHelperStringAdvanced(Model.ExchangePrice.Volume)
+                            </div>
+
+                            <div class="text-truncate">
+                                @AmountHelper.FiatHelper(Model.ExchangePrice.Volume * Model.ExchangeFiat.USD, "$")
+                            </div>
+                            <div class="text-truncate">
+                                @AmountHelper.FiatHelper(Model.ExchangePrice.Volume * Model.ExchangeFiat.EUR, "€")
+                            </div>
+                            <div class="small">
+                                @SharedLocalizer["Total volume on all markets"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-3">
+            <div class="card mb-4 min-block-width-exchange">
+                <div class="card-header custom-padding-header custom-padding-header-index">
+                    <span class="ion ion-ios-briefcase text-large text-success"></span>
+                    <span class="text-big text-cart-padd">@SharedLocalizer["Market capacity"]</span>
+                </div>
+                <div class="card-body custom-padding custom-padding-header-index">
+                    <div class="d-flex align-items-center">
+                        <div class="ml-0">
+                            <div class="text-large">
+                                @AmountHelper.BTCHelperStringAdvanced(Model.MainCoinModel.DynamicTotal * Model.ExchangePrice.Avg)
+                            </div>
+
+                            <div class="text-truncate">
+                                @AmountHelper.FiatHelper(Model.MainCoinModel.DynamicTotal * Model.ExchangePrice.Avg * Model.ExchangeFiat.USD, "$")
+                            </div>
+                            <div class="text-truncate">
+                                @AmountHelper.FiatHelper(Model.MainCoinModel.DynamicTotal * Model.ExchangePrice.Avg * Model.ExchangeFiat.EUR, "€")
+                            </div>
+                            <div class="small">
+                                @SharedLocalizer["Total mined coin price"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-3">
+            <div class="card mb-4 min-block-width-exchange">
+                <div class="card-header custom-padding-header custom-padding-header-index">
+                    <span class="ion ion-ios-stats text-large text-success"></span>
+                    <span class="text-big text-cart-padd">@SharedLocalizer["Change 24h"]</span>
+                </div>
+                <div class="card-body custom-padding custom-padding-header-index">
+                    <div class="d-flex align-items-center">
+                        <div class="ml-0">
+                            <div class="text-large" style="font-size: 50px !important">
+                                @Html.Raw(AmountHelper.Difference(Model.Trend))
+                            </div>
+                            <div class="small">
+                                @SharedLocalizer["Difference with last 24h"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header with-elements">
+            <h6 class="card-header-title">@string.Format(SharedLocalizer["{0}-BTC last 7 days on exchanges"].Value, ViewBag.CoinName.ToString())</h6>
+            <div class="card-header-elements ml-auto"></div>
+        </div>
+        <div class="row no-gutters row-bordered">
+            <div class="col-md-8 col-lg-12 col-xl-8">
+                <div class="card-body">
+                    <div style="height: 210px;">
+                        <canvas id="canvas_chart" style="height: 200px"></canvas>
+                        <script>
+                            var color = "#" + document.getElementsByClassName("bg-navbar-theme")[0].style.backgroundColor;
+                            var config = {
+                                type: 'line',
+                                data: {
+                                    labels: [
+                                            @Html.Raw(String.Join(',', Model.ExchangeHistoy.Select(s => "'" + s.Date + "'").ToArray()))
+                                    ],
+                                    datasets: [{
+                                        label: '@Model.MainCoinModel.CoinName',
+                                        backgroundColor: "#FFFFFF",
+                                        borderColor: window.getComputedStyle(document.getElementsByClassName("bg-navbar-theme")[0], null).getPropertyValue('background-color'),
+                                        data: [
+                                            @String.Join(',', Model.ExchangeHistoy.Select(s => s.Price).ToArray())
+                                        ],
+                                        fill: false,
+                                    }]
+                                },
+                                options: {
+                                    trendlineLinear: {
+                                        style: "rgba(255,105,180, .8)",
+                                        width: 1
+                                    },
+                                    legend: {
+                                        display: false
+                                    },
+                                    maintainAspectRatio: false,
+                                    responsive: true,
+                                    title: {
+                                        display: false
+                                    },
+                                    tooltips: {
+                                        mode: 'index',
+                                        intersect: false,
+                                        callbacks: {
+                                            label: function (t, d) {
+                                                return "BTC " + t.yLabel.toFixed(8);
+                                            }
+                                        }
+                                    },
+                                    hover: {
+                                        mode: 'nearest',
+                                        intersect: true
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            display: true,
+                                            scaleLabel: {
+                                                display: false,
+                                                labelString: 'Month'
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display: true,
+                                            scaleLabel: {
+                                                display: false,
+                                                labelString: 'Value'
+                                            }
+                                        }]
+                                    }
+                                }
+                            };
+
+                            window.onload = function () {
+                                var ctx = document.getElementById('canvas_chart').getContext('2d');
+                                window.myLine = new Chart(ctx, config);
+                            };
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-12 col-xl-4">
+                <div class="card-body">
+
+                    <!-- Numbers -->
+                    <div class="row">
+                        <div class="col-6 col-xl-5 text-muted mb-3">@SharedLocalizer["Change 7 days"]</div>
+                        <div class="col-6 col-xl-7 mb-3">
+                            <span class="text-big">@Html.Raw(AmountHelper.Difference(Model.Trend7))</span>
+                        </div>
+                        <div class="col-6 col-xl-5 text-muted mb-3">@SharedLocalizer["Change 14 days"]</div>
+                        <div class="col-6 col-xl-7 mb-3">
+                            <span class="text-big">@Html.Raw(AmountHelper.Difference(Model.Trend14))</span>
+                        </div>
+                        <div class="col-6 col-xl-5 text-muted mb-3">@SharedLocalizer["Change 30 days"]</div>
+                        <div class="col-6 col-xl-7 mb-3">
+                            <span class="text-big">@Html.Raw(AmountHelper.Difference(Model.Trend30))</span>
+                        </div>
+                        <div class="col-6 col-xl-5 text-muted mb-3">@SharedLocalizer["Change 60 days"]</div>
+                        <div class="col-6 col-xl-7 mb-3">
+                            <span class="text-big">@Html.Raw(AmountHelper.Difference(Model.Trend60))</span>
+                        </div>
+                        <div class="col-6 col-xl-5 text-muted mb-3">@SharedLocalizer["Change 90 days"]</div>
+                        <div class="col-6 col-xl-7 mb-3">
+                            <span class="text-big">@Html.Raw(AmountHelper.Difference(Model.Trend90))</span>
+                        </div>
+                    </div>
+                    <!-- / Numbers -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header with-elements">
+            <h6 class="card-header-title">@string.Format(SharedLocalizer["{0} exchanges"].Value, ViewBag.CoinName.ToString())</h6>
+            <small class="card-header-elements ml-auto">
+                @string.Format(SharedLocalizer["This information helps you to find available markets of {0}"].Value, ViewBag.CoinName.ToString())
+                <br>
+                @SharedLocalizer["Information is precise within ~30min"]
+            </small>
+        </div>
+        <div class="table-responsive">
+            <table class="table card-table table-striped table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>#</th>
+                        <th>@SharedLocalizer["Exchange"]</th>
+                        <th>@SharedLocalizer["Information updated"]</th>
+                        <th>@SharedLocalizer["Last (BTC)"]</th>
+                        <th>@SharedLocalizer["Buy (BTC)"]</th>
+                        <th>@SharedLocalizer["Sell (BTC)"]</th>
+                        <th>@SharedLocalizer["Volume (BTC)"]</th>
+                        <th>@SharedLocalizer["% of Total volume"]</th>
+                        <th>@SharedLocalizer["Change 24h"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 1; }
+                    @foreach (var exch in Model.ExchangePriceList)
+                    {
+                        <tr>
+                            <td>@Html.Raw(i++)</td>
+                            <td><a href="@exch.ExchangeDirectUrl">@exch.Exchange</a></td>
+                            <td><span title="@exch.Time.ToString("yyyy-MM-dd HH:mm")">@AmountHelper.TimeFromNowUtc(exch.Time) ago</span></td>
+                            <td>@AmountHelper.BTCHelperStringNoSig(exch.Last)</td>
+                            <td>@AmountHelper.BTCHelperExhcnagesNoSig(exch.Buy)</td>
+                            <td>@AmountHelper.BTCHelperExhcnagesNoSig(exch.Sell)</td>
+                            <td>@AmountHelper.BTCHelperStringNoSig(exch.Volume)</td>
+                            <td>@AmountHelper.MarketVolumePercent(exch.Volume, Model.ExchangePrice.Volume)</td>
+                            <td>@Html.Raw(AmountHelper.Difference(exch.Change))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+

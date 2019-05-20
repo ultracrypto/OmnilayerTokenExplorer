@@ -1,0 +1,175 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+@using System.Threading
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+@model CoreExplorerV3.Models.HashrateViewModel
+@{
+    ViewData["Title"] = SharedLocalizer["{0} block explorer", Model.MainCoinModel.CoinName];
+}
+@section Styles {
+    <style>
+        .custom-datatable {
+            margin-top: 0;
+            padding-top: 0 !important;
+        }
+
+        .pagination {
+            padding-top: 20px;
+            padding-right: 20px;
+        }
+    </style>
+}
+@section Scripts {
+    <!-- Dependencies -->
+    <script>
+        $(function () {
+            $('.index-datatable').dataTable({
+                searching: false,
+                info: false,
+                sorting: false,
+                "sDom": 't p',
+                bSort: false,
+                order: [],
+                pageLength: 20,
+                language: {
+                    paginate: {
+                        "previous": "@SharedLocalizer["Prev"]",
+                        "next": "@SharedLocalizer["Next"]"
+                    }
+                }
+            });
+            $('.index-datatable').show();
+        });
+    </script>
+}
+<div class="font-weight-bold py-3 mb-4 d-flex">
+    <div>
+        <img src="~/images/coins_custom/@{WriteLiteral(Model.MainCoinModel.V3Logo);}_45.png" width="45" height="45" id="logo_45" />
+    </div>
+    <div class="ml-1">
+        <h4 class="font-weight-bold margin0">@ViewData["Title"]</h4>
+        <div class="text-muted small mt-1 font-weight-normal">
+            @string.Format(SharedLocalizer["Today is {0}"].Value, @DateTime.UtcNow.Date.ToString("D", Thread.CurrentThread.CurrentUICulture))
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-index">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-md-albums text-large text-info"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Current BTC Block"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large" style="font-size: 40px !important;">
+                            @Model.LastBlock
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-index">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-md-albums text-large text-info"></span>
+                <span class="text-big text-cart-padd">@string.Format(SharedLocalizer["Last Block with {0} TX"].Value, Model.MainCoinModel.CoinSymbol)</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large" style="font-size: 40px !important;">
+                            @Model.LastAssetBlock
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-index">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-md-albums text-large text-info"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Total transactions"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display">
+                <div class="d-flex align-items-center">
+                    <div class="ml-0">
+                        <div class="text-large">
+                            @Model.MainCoinModel.DynamicTransactions
+                        </div>
+                        <div class="small">
+                            @SharedLocalizer["Amount of total confirmed transactions in blockchain"]
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="card mb-4 min-block-width-index">
+            <div class="card-header custom-padding-header custom-padding-header-index">
+                <span class="ion ion-ios-information-circle text-large text-success"></span>
+                <span class="text-big text-cart-padd">@SharedLocalizer["Max coin supply"]</span>
+            </div>
+            <div class="card-body custom-padding custom-padding-header-index custom-flex-display">
+                <div class="ml-0">
+                    <div class="text-large">
+                        @if (Model.MainCoinModel.CoinTotalSupply == -1)
+                        {
+                            @Html.Raw("&infin;")
+                        }
+                        else
+                        {
+                            @Model.MainCoinModel.CoinTotalSupply
+                        }
+                    </div>
+                    <div class="small">
+                        @SharedLocalizer["Taken from public sources"]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <h6 class="card-header">
+        @SharedLocalizer["Latest {0} Confirmed blocks with {1} Transactions, 20 on page", Model.ShowBlocks, Model.MainCoinModel.CoinSymbol]
+    </h6>
+    <div class="card-datatable table-responsive custom-datatable">
+        <table class="table table-striped table-bordered index-datatable" style="display: none; margin: 0 !important">
+            <thead class="thead-light">
+                <tr>
+                    <th style="min-width:110px">@SharedLocalizer["Height"]</th>
+                    <th style="min-width:90px">@SharedLocalizer["Age"]</th>
+                    <th>@SharedLocalizer["Difficulty"]</th>
+                    <th style="min-width:130px">@SharedLocalizer["{0} Transactions", Model.MainCoinModel.CoinSymbol]</th>
+                    <th>@SharedLocalizer["Hash"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var block in Model.LastBlocks)
+                {
+                    <tr data-height="@block.Height" class="text-nowrap">
+                        <td>
+                            <a href="@ViewBag.AppendUrl/block/@block.Height">@block.Height</a>
+                        </td>
+                        <td class="text-nowrap"><span title="@block.BlockTime.ToString("yyyy-MM-dd HH:mm")">@block.TimeFromNowUtc</span></td>
+                        <td>@Html.Raw(AmountHelper.BigSmallNumber(block.Difficulty))</td>
+                        <td>@block.TxCount</td>
+                        <td>
+                            <div class="cell-address-tx" style="min-width:110px; max-width: 90%">
+                                <div class="cell-overflow-address-tx">
+                                    <a href="@ViewBag.AppendUrl/block/@block.Hash">@block.Hash</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

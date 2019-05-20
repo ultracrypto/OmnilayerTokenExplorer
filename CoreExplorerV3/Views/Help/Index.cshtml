@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+@using CoreExplorerV3.Models
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+@model CoreExplorerV3.Models.ConnectionViewModel
+@{
+    ViewData["Title"] = SharedLocalizer["Connections"];
+}
+
+<div class="font-weight-bold py-3 mb-4 d-flex">
+    <div>
+        <img src="~/images/coins_custom/@{WriteLiteral(Model.MainCoinModel.V3Logo);}_45.png" width="45" height="45" id="logo_45" />
+    </div>
+    <div class="ml-1">
+        <h4 class="font-weight-bold margin0">@SharedLocalizer["Peer list"]</h4>
+        <div class="text-muted small mt-1 font-weight-normal">
+            @string.Format(SharedLocalizer["{0} network status"].Value, ViewBag.CoinName.ToString())
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">@string.Format(SharedLocalizer["{0} peer list know by explorer instance"].Value, ViewBag.CoinName.ToString())</h6>
+        <small class="card-header-elements ml-auto">
+            @SharedLocalizer["This information helps to understand how much nodes are connected to wallet."]
+        </small>
+    </div>
+    <div class="table-responsive">
+        <table class="table card-table table-striped table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>@SharedLocalizer["Node"]</th>
+                    <th>@SharedLocalizer["Version"]</th>
+                    <th>@SharedLocalizer["Ping"]</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{ int i = 1; }
+                @foreach (var connection in Model.PeerInfo)
+                {
+                    <tr>
+                        <td>@Html.Raw(i++)</td>
+                        <td>@connection.Addr</td>
+                        <td>
+                            @{if (!string.IsNullOrEmpty(connection.SubVer))
+                                {
+                                    @connection.SubVer;
+                                }
+                                else
+                                {
+                                    @connection.Version;
+                                }
+                            }
+                        </td>
+                        <td>@AmountHelper.PingToMs(connection.PingTime)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">@SharedLocalizer["Synchronization"]</h6>
+        <small class="card-header-elements ml-auto">
+        </small>
+    </div>
+    <div class="card-body">
+        @SharedLocalizer["Copy this nodes to your wallet .conf file"]<br />
+        @SharedLocalizer["If you have problem to sync your wallet with {0} blockchain - use the following nodes to fix it.", Model.MainCoinModel.CoinName]<br /><br />
+        <pre>@Model.AddNode</pre>
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using CoreExplorerV3.Helpers
+@using CoreExplorerV3.Models
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResources> SharedLocalizer
+@model CoreExplorerV3.Models.WalletinfoViewModel
+@{
+    ViewData["Title"] = SharedLocalizer["Wallet information"];
+}
+
+<div class="font-weight-bold py-3 mb-4 d-flex">
+    <div>
+        <img src="~/images/coins_custom/@{WriteLiteral(Model.MainCoinModel.V3Logo);}_45.png" width="45" height="45" id="logo_45" />
+    </div>
+    <div class="ml-1">
+        <h4 class="font-weight-bold margin0">@SharedLocalizer["Wallet information"]</h4>
+        <div class="text-muted small mt-1 font-weight-normal">
+            @string.Format(SharedLocalizer["{0} wallet version & network status information"].Value, ViewBag.CoinName.ToString())
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header with-elements">
+        <h6 class="card-header-title">@string.Format(SharedLocalizer["{0} wallet information"].Value, ViewBag.CoinName.ToString())</h6>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">
+            @SharedLocalizer["Wallet version"]
+        </h4>
+        <p class="card-text">@Model.MainCoinModel.WalletVersion</p>
+        <b class="card-title">
+            @SharedLocalizer["Wallet subversion"]
+        </b>
+        <p class="card-text">@Model.MainCoinModel.Subversion</p>
+        <b class="card-title">
+            @SharedLocalizer["Protocol version"]
+        </b>
+        <p class="card-text">@Model.MainCoinModel.ProtocolVersion</p>
+        <b class="card-title">
+            @SharedLocalizer["Connections"]
+        </b>
+        <p class="card-text">@Model.MainCoinModel.Connections</p>
+    </div>
+</div>
+
